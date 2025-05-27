@@ -1,0 +1,115 @@
+mvn archetype:generate -DgroupId=com.example -
+
+DartifactId=myapp -DarchetypeArtifactId=maven-archetype-
+
+quickstart -DinteractiveMode=false
+
+cd desktop
+mkdir MAVENPROJECT2
+cd MAVENPROJECT2
+mvn archetype:generate -DgroupId=com.example -
+
+DartifactId=myapp -DarchetypeArtifactId=maven-archetype-
+
+quickstart -DinteractiveMode=false
+Open The pom.xml File
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+ <modelVersion>4.0.0</modelVersion>
+
+ <groupId>com.example</groupId>
+
+ <artifactId>myapp</artifactId>
+
+ <version>1.0-SNAPSHOT</version>
+
+ <dependencies>
+
+ <!-- JUnit Dependency for Testing -->
+
+ <dependency>
+
+ <groupId>junit</groupId>
+
+ <artifactId>junit</artifactId>
+
+ <version>4.13.2</version>
+
+ <scope>test</scope>
+
+ </dependency>
+
+ </dependencies>
+<build>
+
+ <plugins>
+
+ <!-- Maven Surefire Plugin for running tests -->
+
+ <plugin>
+
+ <groupId>org.apache.maven.plugins</groupId>
+
+ <artifactId>maven-surefire-plugin</artifactId>
+
+ <version>2.22.2</version>
+
+ <configuration>
+
+ <redirectTestOutputToFile>false</redirectTestOutputToFile>
+
+ <useSystemOut>true</useSystemOut>
+
+ </configuration>
+
+ </plugin>
+
+ </plugins>
+
+ </build>
+
+</project> 
+Step 4: Open Java Code (AppTest.java) File
+
+ Open a file AppTest.java inside 
+
+the src/test/java/com/example/ directory.
+
+ After opening the AppTest.java copy the below code and paste it in that file 
+
+then save it.
+
+package com.example;
+
+import org.junit.Assert;
+
+import org.junit.Test;
+
+public class AppTest {
+@Test
+
+ public void testAdd() {
+
+ App app = new App();
+
+ int result = app.add(2, 3);
+
+ System.out.println("Running test: 2 + 3 = " + result);
+
+ Assert.assertEquals(5, result);
+
+ }
+
+}
+mvn compile
+mvn test
+mvn package
+java -cp target/myapp-1.0-SNAPSHOT.jar com.example.App
