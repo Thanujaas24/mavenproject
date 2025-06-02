@@ -1,0 +1,26 @@
+Open PowerShell as Administrator
+Run the command:
+wsl --install
+Open Microsoft Store
+Search for "Ubuntu App" (choose Ubuntu 22.04 LTS)
+Click Install
+sudo apt update -y
+sudo apt install ansible -y
+mkdir ansible-lab
+cd ansible-lab
+ vi inventory.ini
+localhost ansible_connection=local
+ansible all -i inventory.ini -m ping
+vi install_htop.yml
+ 
+ ---
+- name: Install htop system monitor tool
+  hosts: local
+  become: true
+  tasks:
+ - name: Install htop package
+   ansible.builtin.package:
+   name: htop
+   state: present
+ansible-playbook -i inventory.ini install_htop.yml
+htop
