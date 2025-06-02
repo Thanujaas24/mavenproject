@@ -1,0 +1,35 @@
+cd desktop
+mkdir gradleproject
+cd gradleprojectnew
+gradle init --type java-application
+17
+1
+1
+1
+no
+gradle build
+gradle run
+gradle test 
+program 04
+mvn archetype:generate -DgroupId=com.example -DartifactId=maven.project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+open app.java write some simple program on it 
+package com.example;
+public class App
+{
+  public static void main(String[]args)
+    {
+      System.out.println("hello maven");
+      System.out.println("this is simple example");
+    }
+}
+mvn compile
+mvn test
+mvn package
+java -cp target/maven-project-1.0-SNAPSHOT.jar com.example.App
+gradle init 
+yes
+2
+gradle build 
+gradle run
+java -cp target/maven-project-1.0-SNAPSHOT.jar com.example
+gradle run
