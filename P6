@@ -1,0 +1,14 @@
+New Item
+open github create a new repository give a Name [SAMPLEJENKINSPROJECT] CHOOSE Freestyle project
+GO to gitbash
+cd desktop
+cd MAVENTOGRADLEPROJECT
+cd maven-example
+git init
+git add .
+git branch -M main
+git remote add origin https://github.com/itishree￾barik890/SAMPLEJENKINSPROJECT.git
+git push -u origin main
+Go to Jenkins dashboard click on source code management choose gitpaste github Repo URL
+clean compile test package
+java -cp target/maven-example-1.0-SNAPSHOT.jar com.example.App
