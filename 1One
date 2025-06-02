@@ -1,115 +1,118 @@
-mvn archetype:generate -DgroupId=com.example -
-
-DartifactId=myapp -DarchetypeArtifactId=maven-archetype-
-
-quickstart -DinteractiveMode=false
-
-cd desktop
-mkdir MAVENPROJECT2
-cd MAVENPROJECT2
-mvn archetype:generate -DgroupId=com.example -
-
-DartifactId=myapp -DarchetypeArtifactId=maven-archetype-
-
-quickstart -DinteractiveMode=false
-Open The pom.xml File
-<?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
- xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-
-http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
- <modelVersion>4.0.0</modelVersion>
-
- <groupId>com.example</groupId>
-
- <artifactId>myapp</artifactId>
-
- <version>1.0-SNAPSHOT</version>
-
- <dependencies>
-
- <!-- JUnit Dependency for Testing -->
-
- <dependency>
-
- <groupId>junit</groupId>
-
- <artifactId>junit</artifactId>
-
- <version>4.13.2</version>
-
- <scope>test</scope>
-
- </dependency>
-
- </dependencies>
-<build>
-
- <plugins>
-
- <!-- Maven Surefire Plugin for running tests -->
-
- <plugin>
-
- <groupId>org.apache.maven.plugins</groupId>
-
- <artifactId>maven-surefire-plugin</artifactId>
-
- <version>2.22.2</version>
-
- <configuration>
-
- <redirectTestOutputToFile>false</redirectTestOutputToFile>
-
- <useSystemOut>true</useSystemOut>
-
- </configuration>
-
- </plugin>
-
- </plugins>
-
- </build>
-
-</project> 
-Step 4: Open Java Code (AppTest.java) File
-
- Open a file AppTest.java inside 
-
-the src/test/java/com/example/ directory.
-
- After opening the AppTest.java copy the below code and paste it in that file 
-
-then save it.
-
-package com.example;
-
-import org.junit.Assert;
-
-import org.junit.Test;
-
-public class AppTest {
-@Test
-
- public void testAdd() {
-
- App app = new App();
-
- int result = app.add(2, 3);
-
- System.out.println("Running test: 2 + 3 = " + result);
-
- Assert.assertEquals(5, result);
-
- }
-
-}
+mvn archetype:generate -DgroupId=com.example -DartifactId=myapp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 mvn compile
 mvn test
 mvn package
 java -cp target/myapp-1.0-SNAPSHOT.jar com.example.App
+
+for web application under dependency management add this lines
+
+mvn archetype:generate -DgroupId=com.mvit.cse -DartifactId=studentregistrationapp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+<plugins>
+    <plugin>
+     <groupId>org.apache.tomcat.maven</groupId>
+     <artifactId>tomcat7-maven-plugin</artifactId>
+     <version>2.2</version>
+       <configuration>
+          <path>/</path>
+          <port>8080</port>
+      </configuration>
+     </plugin>
+  </plugins>
+</build>
+</project>
+
+
+
+
+
+Create index.jsp (Student Registration Form)
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration</title>
+  <style>
+  body {
+  font-family: Arial, sans-serif;
+  }
+  .container {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  }
+  h2 {
+  text-align: center;
+  }
+  label {
+  display: block;
+  margin-bottom: 5px;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  input[type="date"],
+  select,
+  textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  }
+  input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  }
+  input[type="submit"]:hover {
+  background-color: #3e8e41;
+  }
+  </style>
+ </head>
+ <body>
+  <div class="container">
+  <h2>Student Registration Form</h2>
+  <form>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" placeholder="Full Name">
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" placeholder="Email Address">
+  <label for="mobile">Mobile Number:</label>
+  <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number">
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" placeholder="Password">
+  <label for="dob">Date of Birth:</label>
+  <input type="date" id="dob" name="dob">
+  <label for="gender">Gender:</label>
+  <select id="gender" name="gender">
+  <option value="male">Male</option>
+  <option value="female">Female</option>
+  <option value="other">Other</option>
+  </select>
+  <label for="address">Address:</label>
+  <textarea id="address" name="address" rows="4" placeholder="Street Address"></textarea>
+  <label for="course">Course:</label>
+  <select id="course" name="course">
+  <option value="BCA">BCA</option>
+  <option value="BBA">BBA</option>
+  <option value="BTech">B.Tech</option>
+  <option value="MCA">MCA</option>
+  <option value="MBA">MBA</option>
+  </select>
+  <input type="submit" value="Register">
+  </form>
+  </div>
+ </body>
+ </html>
+mvn compile 
+mvn package
+mvn tomcat7:run
+http://localhost:8080/index.jsp
